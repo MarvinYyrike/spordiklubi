@@ -5,4 +5,5 @@ public interface Isikud {
     public void laenuab();
     //TODO isik saab osaleda üritusel, osalemiel peab ütlema mitu osalejat seal kokku oli ja siis meetod randomiga väljastab saadud koha võisltusel
     public void osaleb();
+    //TODO laenutatud eseme tagasitoomine
 }

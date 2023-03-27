@@ -1,4 +1,4 @@
-public class inventaar {
+public class Inventaar {
     private boolean kasLaos;
     private int tagatisraha;
     private String nimi;
