@@ -2,10 +2,11 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class Liige extends Isik{
-    private String liikmelisuse_algus; //ISO date format for example 1999-01-08
+    private LocalDate liikmelisuseAlgus;
 
-    public Liige(String liikmelisuse_algus) {
-        this.liikmelisuse_algus = liikmelisuse_algus;
+    public Liige(String eesnimi, String perenimi, LocalDate synniaeg, String isikukood, LocalDate liikmelisuseAlgus) {
+        super(eesnimi, perenimi, synniaeg, isikukood);
+        this.liikmelisuseAlgus = liikmelisuseAlgus;
     }
 
     @Override
