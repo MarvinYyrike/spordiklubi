@@ -1,17 +1,16 @@
 import java.util.ArrayList;
 import java.util.List;
 
-//Antud klass talletab kõik spordivahendid, mis on olemas spordiklubi inventaaris
 public class Spordivahendid {
-    private List<Spordivahend> spordivahendList;
+    private static List<Spordivahend> spordivahendList = null;
 
     public Spordivahendid() {
-        if(spordivahendList.isEmpty()) {
-            this.spordivahendList = new ArrayList<>();
+        if (spordivahendList == null) {
+            spordivahendList = new ArrayList<>();
         }
     }
 
-    public List<Spordivahend> getSpordivahendList() {
+    public static List<Spordivahend> getSpordivahendList() {
         return spordivahendList;
     }
 }

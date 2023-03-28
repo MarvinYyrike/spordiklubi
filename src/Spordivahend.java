@@ -1,5 +1,3 @@
-import java.util.List;
-
 public class Spordivahend extends Spordivahendid{
     private boolean kasLaos;
     private int tagatisraha;
@@ -8,15 +6,13 @@ public class Spordivahend extends Spordivahendid{
     private int esemeEestTasutudTagatisraha;
 
     public Spordivahend(boolean kasLaos, int tagatisraha, String nimi, int laokoht, int esemeEestTasutudTagatisraha) {
-        super();
         this.kasLaos = kasLaos;
         this.tagatisraha = tagatisraha;
         this.nimi = nimi;
         this.laokoht = laokoht;
         this.esemeEestTasutudTagatisraha = esemeEestTasutudTagatisraha;
-    }
-    public List<Spordivahend> getSpordivahendidList(){
-        return super.getSpordivahendList();
+
+        Spordivahendid.getSpordivahendList().add(this);
     }
 
     public boolean isKasLaos() {
