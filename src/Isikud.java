@@ -9,6 +9,6 @@ public interface Isikud {
     //laenutatud eseme tagasitoomine
     public void tagastab(Spordivahend spordivahend);
     //TODO isik saab osaleda üritusel, osalemiel peab ütlema mitu osalejat seal kokku oli ja siis meetod randomiga väljastab saadud koha võisltusel
-    public void osaleb();
+    public void osaleb(Liige liige, Yritus nimi);
 
 }
