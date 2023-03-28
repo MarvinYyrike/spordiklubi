@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.util.Objects;
 
 public abstract class Isik implements Isikud{
     private String eesnimi;
@@ -43,6 +44,18 @@ public abstract class Isik implements Isikud{
 
     public void setIsikukood(String isikukood) {
         this.isikukood = isikukood;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Isik isik)) return false;
+        return Objects.equals(isikukood, isik.isikukood);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(isikukood);
     }
 
     @Override
