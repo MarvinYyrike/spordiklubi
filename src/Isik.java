@@ -59,6 +59,11 @@ public abstract class Isik implements Isikud{
     }
 
     @Override
+    public String toString() {
+        return eesnimi + " " + perenimi + " , sündinud: " + synniaeg;
+    }
+
+    @Override
     public void astubLiikmeks() {
         Liige liige = new Liige(eesnimi, perenimi, synniaeg, isikukood, LocalDate.now());
 

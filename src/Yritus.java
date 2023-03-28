@@ -1,8 +1,22 @@
+import java.time.LocalDate;
 import java.util.Objects;
 
 public class Yritus {
     private String nimi;
-    private String toimumisaeg;
+    private LocalDate toimumisaeg;
+
+    public Yritus(String nimi, LocalDate toimumisaeg) {
+        this.nimi = nimi;
+        this.toimumisaeg = toimumisaeg;
+    }
+
+    public String getNimi() {
+        return nimi;
+    }
+
+    public LocalDate getToimumisaeg() {
+        return toimumisaeg;
+    }
 
     @Override
     public boolean equals(Object o) {
