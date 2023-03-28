@@ -54,7 +54,8 @@ public abstract class Isik implements Isikud{
     public abstract void laenutab(Liige liige, Spordivahend spordivahend, LocalDate kuupäev, int tasutudTagatisRaha);
 
     @Override
-    public void osaleb() {
+    public void osaleb(Isik isik, Yritus yritus) {
+        
 
     }
     @Override
