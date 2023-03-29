@@ -11,6 +11,18 @@ public class Liikmelisus {
         this.isik = isik;
     }
 
+    public LocalDate getLiikmelisuseAlgus() {
+        return liikmelisuseAlgus;
+    }
+
+    public void setLiikmelisuseAlgus(LocalDate liikmelisuseAlgus) {
+        this.liikmelisuseAlgus = liikmelisuseAlgus;
+    }
+
+    public Isik getIsik() {
+        return isik;
+    }
+
     public void laenutab(Spordivahend spordivahend, LocalDate kuupäev, int tasutudTagatisRaha) {
         if(spordivahend.isKasLaos() && tasutudTagatisRaha >= spordivahend.getTagatisraha()){
             Laenutamine laenutamine = new Laenutamine(isik, spordivahend, kuupäev);
