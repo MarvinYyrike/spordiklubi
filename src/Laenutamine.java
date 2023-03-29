@@ -6,14 +6,13 @@ public class Laenutamine extends Laenutamised{
     private Spordivahend spordivahend;
     private LocalDate laenutamisKuupäev;
 
-    public Laenutamine(Isik liige, Spordivahend spordivahend, LocalDate laenutamisKuupäev) {
+    public Laenutamine(Isik isik, Spordivahend spordivahend, LocalDate laenutamisKuupäev) {
         this.isik = isik;
         this.spordivahend = spordivahend;
         this.laenutamisKuupäev = laenutamisKuupäev;
 
     }
     public void addLaenutus(Laenutamine laenutamine){
-
         laenutamine.getLaenutamineList().add(laenutamine);
     }
 }
