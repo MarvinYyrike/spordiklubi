@@ -8,14 +8,15 @@ public class Osalemised {
   public Osalemised() {
   }
 
-  public void lisaOsalemine(Isik isik, Yritus yritus) {
+  public Osalemine lisaOsalemine(Isik isik, Yritus yritus) {
     Osalemine osalemine = new Osalemine(isik, yritus);
     for (Osalemine o : osalemineList) {
       if (osalemine.equals(o)) {
-        return;
+        return o;
       }
     }
     osalemineList.add(osalemine);
+    return osalemine;
   }
 
   public List<Isik> tulemusteArvutamine(Yritus yritus) {

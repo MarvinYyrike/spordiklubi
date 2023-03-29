@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 public class Yritus {
@@ -28,5 +29,9 @@ public class Yritus {
     @Override
     public int hashCode() {
         return Objects.hash(nimi);
+    }
+
+    public String toString() {
+      return nimi + " "  + DateTimeFormatter.ofPattern("dd.MM.yyyy").format(toimumisaeg);
     }
 }
