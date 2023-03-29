@@ -83,6 +83,24 @@ public class Main {
 
 
   }
+  public static Isik otsiIsikEesnimega(){
+    System.out.println("Sisesta, millist isikut otsid");
+    Scanner scanner = new Scanner(System.in);
+    String isikEesnimi = scanner.next();
+    System.out.println("Otsin isikut:: " + isikEesnimi);
+    List<Isik> isikud = Liikmed.getLiikmed();
+    Isik valitudIsik = null;
+    for (Isik isik : isikud) {
+      if (isik.getEesnimi().equals(isikEesnimi)) {
+        valitudIsik = isik;
+      }
+    }
+    if (valitudIsik == null) {
+      System.out.println("Sellist isikut ei ole...");
+    }
+    return valitudIsik;
+  }
+
   public static Spordivahend otsiSpordivahend() {
     System.out.println("Sisesta, mida tahad laenutada/tagastada");
     Scanner scanner = new Scanner(System.in);
