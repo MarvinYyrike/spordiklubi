@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -19,6 +20,10 @@ public class Main {
       System.out.println("2- Otsida üritusi, kus isik on osalenud.");
       System.out.println("3- Vaadata kõiki üritusel osalenuid.");
       System.out.println("4- Väljuda.");
+      System.out.println("5 - Näha laenutatavaid esemeid");
+      System.out.println("6 - laenuta ese: (kõigepealt vajuta 6 (enne pead olema spordivahendeid vaadanud) siis sisesta oma andmed ja astu liikmeks");
+      System.out.println("7 - loo uus konto (uue isiku tekitamine porgrammi)");
+      System.out.println("8 - tagasta ese");
 
       valik = scan.nextInt();
       switch (valik) {
@@ -31,9 +36,32 @@ public class Main {
           break;
         case 3:
           //läheb üritusel osalenuid otsima
+          break;
         case 4:
           System.out.println("Väljusid süsteemist.");
           break;
+        case 5:
+          vaataSpordivahendeid();
+          break;
+        case 6:
+          //vaataSpordivahendeid();
+          Spordivahend valitudSpordivahend1 = otsiSpordivahend();
+          Laenutamine laenutamine = new Laenutamine(looIsik(),valitudSpordivahend1, LocalDate.now());
+          laenutamine.addLaenutus(laenutamine);
+
+          break;
+        case 7:
+          //loo uus isik programmi
+          looIsik();
+          break;
+        case 8:
+          // tagasta ese
+          System.out.println("Kes tagastab:");
+          Isik isik = looIsik();
+          Spordivahend valitudSpordivahend2 = otsiSpordivahend();
+          isik.tagastab(valitudSpordivahend2);
+          break;
+
         default:
           System.out.println("Sisestamisel läks midagi valesti, proovi palun uuesti.");
 
@@ -42,8 +70,41 @@ public class Main {
 
 
   }
+  public static Spordivahend otsiSpordivahend() {
+    System.out.println("Sisesta, mida tahad laenutada/tagastada");
+    Scanner scanner = new Scanner(System.in);
+    String spordivahendiNimi =  scanner.next();
+    System.out.println("Otsin järgmist eset: " + spordivahendiNimi);
+    System.out.println("Ahaa üles leidsin");
+    List<Spordivahend> spordivahendid = Spordivahendid.getSpordivahendList();
+    Spordivahend valitudSpordivahend = spordivahendid.get(0);
+    for (Spordivahend spordivahend : spordivahendid) {
+      if (spordivahendiNimi.equals(spordivahend.getNimi())){
+        valitudSpordivahend = spordivahend;
+      }
+    }
+    return valitudSpordivahend;
+  }
+  public static Isik looIsik(){
+    System.out.println("Eesnimi:");
+    Scanner scannerEesnimi = new Scanner(System.in);
+    String eesnimi =  scannerEesnimi.next();
+    System.out.println("Perenimi:");
+    Scanner scannerPerenimi = new Scanner(System.in);
+    String perenimi =  scannerPerenimi.next();
+    System.out.println("Synniaeg yyyy-mm-dd");
+    Scanner scannerSynniaeg = new Scanner(System.in);
+    String synniaeg =  scannerSynniaeg.next();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    System.out.println("Isikukood:");
+    Scanner scannerIsikukood = new Scanner(System.in);
+    String isikokood =  scannerIsikukood.next();
 
-  private static void testiSpordivahendeid() {
+    Isik isik = new Isik(eesnimi, perenimi, LocalDate.parse(synniaeg, formatter),isikokood);
+    return isik;
+  }
+
+  private static void vaataSpordivahendeid() {
     //Loon spordivahendite inventari listi:
 
     //Loon mõned spordiesemed, mis on spordiklubil laos olemas ja on võimalik laenutada
@@ -56,13 +117,11 @@ public class Main {
 
 
     //To print the Spordivahendid list names
-        /*
         List<Spordivahend> list = Spordivahendid.getSpordivahendList();
         for (int i = 0; i < list.size(); i++) {
             Spordivahend spordivahend = list.get(i);
             System.out.println(spordivahend.getNimi());
         }
-        */
   }
 
   private static void testiYritusi() {
