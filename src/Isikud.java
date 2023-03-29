@@ -4,7 +4,7 @@ public interface Isikud {
     //TODO isik saab osta liikmelisuse, siis muutub isik liikmeks
     public void astubLiikmeks();
     //isik saab laenutada varustust (peab näitama, kas varustust kasutab üritusel või mitte, võib olla üledefineeritud meetodid siis
-    public void laenutab(Liige liige, Spordivahend spordivahend, LocalDate kuupäev, int tasutudTagatisRaha);
+    public void laenutab(Liikmelisus liige, Spordivahend spordivahend, LocalDate kuupäev, int tasutudTagatisRaha);
 
     //laenutatud eseme tagasitoomine
     public void tagastab(Spordivahend spordivahend);

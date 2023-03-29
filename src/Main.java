@@ -32,11 +32,11 @@ public class Main {
         yritused.add(new Yritus("Paide-Türi rahvajooks 2023", LocalDate.parse("2023-09-24")));
         yritused.add(new Yritus("Viljandi järvejooks 2023", LocalDate.parse("2023-05-01")));
 
-        List<Liige> isikud = new ArrayList<>();
+        List<Isik> isikud = new ArrayList<>();
         // Siin peaks see olema veel isik, aga hetkel me ei saa seda tüüpi klassi luua
-        isikud.add(new Liige("Pavel", "Loskutov", LocalDate.parse("1963-12-02"), "36912021234", LocalDate.now()));
-        isikud.add(new Liige("Kirke", "Kuusik", LocalDate.parse("1988-11-15"), "48811152714", LocalDate.now()));
-        isikud.add(new Liige("Kait", "Kuusik", LocalDate.parse("1986-02-02"), "38601022764", LocalDate.now()));
+        isikud.add(new Isik("Pavel", "Loskutov", LocalDate.parse("1963-12-02"), "36912021234"));
+        isikud.add(new Isik("Kirke", "Kuusik", LocalDate.parse("1988-11-15"), "48811152714"));
+        isikud.add(new Isik("Kait", "Kuusik", LocalDate.parse("1986-02-02"), "38601022764"));
 
         Osalemised osalemised = new Osalemised();
         osalemised.lisaOsalemine(isikud.get(0), yritused.get(0));

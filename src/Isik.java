@@ -1,7 +1,7 @@
 import java.time.LocalDate;
 import java.util.Objects;
 
-public abstract class Isik implements Isikud{
+public class Isik{
     private String eesnimi;
     private String perenimi;
     private LocalDate synniaeg;
@@ -62,20 +62,4 @@ public abstract class Isik implements Isikud{
     public String toString() {
         return eesnimi + " " + perenimi + " , sündinud: " + synniaeg;
     }
-
-    @Override
-    public void astubLiikmeks() {
-        Liige liige = new Liige(eesnimi, perenimi, synniaeg, isikukood, LocalDate.now());
-
-    }
-    @Override
-    public abstract void laenutab(Liige liige, Spordivahend spordivahend, LocalDate kuupäev, int tasutudTagatisRaha);
-
-    @Override
-    public void osaleb(Isik isik, Yritus yritus) {
-        
-
-    }
-    @Override
-    public abstract void tagastab(Spordivahend spordivahend);
 }

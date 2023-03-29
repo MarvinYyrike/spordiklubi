@@ -1,18 +1,19 @@
 import java.time.LocalDate;
 import java.util.List;
 
-public class Liige extends Isik{
+public class Liikmelisus {
     private LocalDate liikmelisuseAlgus;
+    private Isik isik;
 
-    public Liige(String eesnimi, String perenimi, LocalDate synniaeg, String isikukood, LocalDate liikmelisuseAlgus) {
-        super(eesnimi, perenimi, synniaeg, isikukood);
+
+    public Liikmelisus(LocalDate liikmelisuseAlgus, Isik isik) {
         this.liikmelisuseAlgus = liikmelisuseAlgus;
+        this.isik = isik;
     }
 
-    @Override
-    public void laenutab(Liige liige, Spordivahend spordivahend, LocalDate kuupäev, int tasutudTagatisRaha) {
+    public void laenutab(Spordivahend spordivahend, LocalDate kuupäev, int tasutudTagatisRaha) {
         if(spordivahend.isKasLaos() && tasutudTagatisRaha >= spordivahend.getTagatisraha()){
-            Laenutamine laenutamine = new Laenutamine(liige, spordivahend, kuupäev);
+            Laenutamine laenutamine = new Laenutamine(isik, spordivahend, kuupäev);
             laenutamine.getLaenutamineList().add(laenutamine);
             spordivahend.setKasLaos(false);
             spordivahend.setEsemeEestTasutudTagatisraha(tasutudTagatisRaha);
@@ -24,7 +25,6 @@ public class Liige extends Isik{
 
     }
 
-    @Override
     public void tagastab(Spordivahend spordivahend) {
 
         //randomiga valime laokoha (0-99), tsekime kas see on vaba ning kui on vaba, siis paneme laokohale
