@@ -2,16 +2,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Liikmed {
-  private static List<Isik> liikmed = null;
+  private List<Isik> liikmed = new ArrayList<>();
 
   public Liikmed() {
-    if (liikmed == null) {
-      liikmed = new ArrayList<>();
-    }
-  }
-
-  public void setLiikmed(List<Isik> liikmed) {
-    this.liikmed = liikmed;
   }
 
   private boolean onLiige(Isik isik) {
@@ -22,13 +15,36 @@ public class Liikmed {
     }
     return false;
   }
+
   public void lisaLiikmeks(Isik isik) {
-    if(onLiige(isik)) {
+    if (onLiige(isik)) {
       liikmed.add(isik);
     }
   }
 
-  public static List<Isik> getLiikmed() {
-    return liikmed;
+  public Isik otsiIsikEesnimega(String isikEesnimi) {
+    for (Isik isik : liikmed) {
+      if (isik.getEesnimi().equalsIgnoreCase(isikEesnimi)) {
+        return isik;
+      }
+    }
+    return null;
+  }
+
+  public void kuvaLiikmed() {
+    for (int i = 0; i < liikmed.size(); i++) {
+      System.out.println(i + 1 + ". liige on: " + liikmed.get(i));
+    }
+  }
+
+  public boolean onLiikmeid() {
+    return !liikmed.isEmpty();
+  }
+
+  public Isik otsiIsikNumbriJargi(int number) {
+    if (number < 0 || number - 1 > liikmed.size()) {
+      return null;
+    }
+    return liikmed.get(number - 1);
   }
 }

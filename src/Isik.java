@@ -2,7 +2,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
-public class Isik extends Liikmed{
+public class Isik {
     private String eesnimi;
     private String perenimi;
     private LocalDate synniaeg;
@@ -13,7 +13,6 @@ public class Isik extends Liikmed{
         this.perenimi = perenimi;
         this.synniaeg = synniaeg;
         this.isikukood = isikukood;
-        Liikmed.getLiikmed().add(this);
     }
 
 

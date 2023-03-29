@@ -1,3 +1,4 @@
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -14,9 +15,11 @@ public class Main {
     Spordivahend noolemääng = new Spordivahend(true, 20, "noolemäng", 5, 0);
     Spordivahend matkauisud = new Spordivahend(true, 250, "matkauisud", 6, 0);
 
+    Liikmed liikmed = new Liikmed();
+
+    Isik aktiivneIsik = null;
 
     // testiYritusi();
-    // testiSpordivahendeid();
     //Scanneriga küsi infot osalemiste ja ürituste kohta.
     //Scanneriga sisesta uus üritusel osalemine.
     // Liides, kus saab valida, mida sisestada soovitakse.
@@ -25,20 +28,24 @@ public class Main {
       Scanner scan = new Scanner(System.in);
       System.out.println("Mida soovid teha?");
       System.out.println();
-      System.out.println("1- Sisestada üritusel osalemist.");
-      System.out.println("2- Otsida üritusi, kus isik on osalenud.");
-      System.out.println("3- Vaadata kõiki üritusel osalenuid.");
-      System.out.println("4- Väljuda.");
+      System.out.println("1 - Sisestada üritusel osalemist.");
+      System.out.println("2 - Otsida üritusi, kus isik on osalenud.");
+      System.out.println("3 - Vaadata kõiki üritusel osalenuid.");
+      System.out.println("4 - Väljuda.");
       System.out.println("5 - Näha laenutatavaid esemeid");
       System.out.println("6 - laenuta ese: (kõigepealt vajuta 6 (enne pead olema spordivahendeid vaadanud) siis sisesta oma andmed ja astu liikmeks");
-      System.out.println("7 - loo uus konto (uue isiku tekitamine porgrammi)");
-      System.out.println("8 - tagasta ese");
+      System.out.println("7 - tagasta ese");
+      System.out.println("8 - loo uus konto (uue isiku tekitamine programmi)");
+      System.out.println("9 - vaheta kontot");
 
       valik = scan.nextInt();
       switch (valik) {
         case 1:
+          if (aktiivneIsik == null) {
+            aktiivneIsik = looVoiValiIsik(liikmed);
+            break;
+          }
           //uus ürituse ja isiku ühendus
-          //uus isik?
           break;
         case 2:
           //läheb isiku üritusi otsima
@@ -55,25 +62,34 @@ public class Main {
         case 6:
           //vaataSpordivahendeid();
           Spordivahend valitudSpordivahend1 = otsiSpordivahend();
-          if(valitudSpordivahend1==null){
+          if (valitudSpordivahend1 == null) {
             break;
           }
-
-          Laenutamine laenutamine = new Laenutamine(looIsik(),valitudSpordivahend1, LocalDate.now());
+          if (aktiivneIsik == null) {
+            aktiivneIsik = looVoiValiIsik(liikmed);
+            break;
+          }
+          Laenutamine laenutamine = new Laenutamine(aktiivneIsik, valitudSpordivahend1, LocalDate.now());
           laenutamine.addLaenutus(laenutamine);
 
           break;
         case 7:
-          //loo uus isik programmi
-          looIsik();
-          break;
-        case 8:
           // tagasta ese
           System.out.println("Kes tagastab:");
-          Isik isik = looIsik();
+          Isik isik = looIsik(liikmed);
           Spordivahend valitudSpordivahend2 = otsiSpordivahend();
           isik.tagastab(valitudSpordivahend2);
+
           break;
+        case 8:
+          //loo uus isik programmi
+          aktiivneIsik = looIsik(liikmed);
+          break;
+        case 9:
+          //vaheta isikut
+          aktiivneIsik = looVoiValiIsik(liikmed);
+          break;
+
 
         default:
           System.out.println("Sisestamisel läks midagi valesti, proovi palun uuesti.");
@@ -83,18 +99,37 @@ public class Main {
 
 
   }
-  public static Isik otsiIsikEesnimega(){
+
+  private static Isik looVoiValiIsik(Liikmed liikmed) {
+    if (!liikmed.onLiikmeid()) {
+      System.out.println("Kuna klubil pole ühtegi liiget, siis palun sisesta esimene:");
+      return looIsik(liikmed);
+    }
+    System.out.println("Vali isik klubi liikmete seast:");
+
+    liikmed.kuvaLiikmed();
+
+    System.out.println("Sisesta liikme number");
+    int number = 0;
+    Isik aktiivneIsik = null;
+    while (aktiivneIsik == null) {
+      Scanner scan = new Scanner(System.in);
+      number = scan.nextInt();
+      aktiivneIsik = liikmed.otsiIsikNumbriJargi(number);
+      if (aktiivneIsik == null) {
+        System.out.println("Sellise numbriga isikut ei leitud, palun proovi uuesti");
+      }
+    }
+    return aktiivneIsik;
+  }
+
+  public static Isik otsiIsikEesnimega(Liikmed liikmed) {
     System.out.println("Sisesta, millist isikut otsid");
     Scanner scanner = new Scanner(System.in);
     String isikEesnimi = scanner.next();
     System.out.println("Otsin isikut:: " + isikEesnimi);
-    List<Isik> isikud = Liikmed.getLiikmed();
-    Isik valitudIsik = null;
-    for (Isik isik : isikud) {
-      if (isik.getEesnimi().equals(isikEesnimi)) {
-        valitudIsik = isik;
-      }
-    }
+
+    Isik valitudIsik = liikmed.otsiIsikEesnimega(isikEesnimi);
     if (valitudIsik == null) {
       System.out.println("Sellist isikut ei ole...");
     }
@@ -109,42 +144,50 @@ public class Main {
     List<Spordivahend> spordivahendid = Spordivahendid.getSpordivahendList();
     Spordivahend valitudSpordivahend = null;
     for (Spordivahend spordivahend : spordivahendid) {
-      if (spordivahendiNimi.equals(spordivahend.getNimi())) {
+      if (spordivahendiNimi.equalsIgnoreCase(spordivahend.getNimi())) {
         valitudSpordivahend = spordivahend;
       }
     }
     if (valitudSpordivahend == null) {
       System.out.println("Sellist eset ei ole...");
     }
-      return valitudSpordivahend;
+    return valitudSpordivahend;
   }
 
-  public static Isik looIsik(){
+  public static Isik looIsik(Liikmed liikmed) {
     System.out.println("Eesnimi:");
     Scanner scannerEesnimi = new Scanner(System.in);
-    String eesnimi =  scannerEesnimi.next();
+    String eesnimi = scannerEesnimi.next();
     System.out.println("Perenimi:");
     Scanner scannerPerenimi = new Scanner(System.in);
-    String perenimi =  scannerPerenimi.next();
+    String perenimi = scannerPerenimi.next();
     System.out.println("Synniaeg yyyy-mm-dd");
-    Scanner scannerSynniaeg = new Scanner(System.in);
-    String synniaeg =  scannerSynniaeg.next();
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    LocalDate synniaeg = null;
+    while(synniaeg == null) {
+      Scanner scannerSynniaeg = new Scanner(System.in);
+      DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+      try {
+        synniaeg = LocalDate.parse(scannerSynniaeg.next(), formatter);
+      } catch(DateTimeException e) {
+        System.out.println("Vigane sünniaeg, palun sisesta uuesti kujul yyyy-mm-dd");
+      }
+    }
     System.out.println("Isikukood:");
     Scanner scannerIsikukood = new Scanner(System.in);
-    String isikokood =  scannerIsikukood.next();
+    String isikokood = scannerIsikukood.next();
 
-    Isik isik = new Isik(eesnimi, perenimi, LocalDate.parse(synniaeg, formatter),isikokood);
+    Isik isik = new Isik(eesnimi, perenimi, synniaeg, isikokood);
+    liikmed.lisaLiikmeks(isik);
     return isik;
   }
 
   private static void vaataSpordivahendeid() {
     //To print the Spordivahendid list names
-        List<Spordivahend> list = Spordivahendid.getSpordivahendList();
-        for (int i = 0; i < list.size(); i++) {
-            Spordivahend spordivahend = list.get(i);
-            System.out.println(spordivahend.getNimi());
-        }
+    List<Spordivahend> list = Spordivahendid.getSpordivahendList();
+    for (int i = 0; i < list.size(); i++) {
+      Spordivahend spordivahend = list.get(i);
+      System.out.println(spordivahend.getNimi());
+    }
   }
 
   private static void testiYritusi() {
