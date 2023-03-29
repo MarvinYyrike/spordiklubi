@@ -2,9 +2,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Liikmed {
-  private List<Isik> liikmed = new ArrayList<>();
+  private static List<Isik> liikmed = null;
 
   public Liikmed() {
+    if (liikmed == null) {
+      liikmed = new ArrayList<>();
+    }
+  }
+
+  public void setLiikmed(List<Isik> liikmed) {
+    this.liikmed = liikmed;
   }
 
   private boolean onLiige(Isik isik) {
@@ -21,7 +28,7 @@ public class Liikmed {
     }
   }
 
-  public List<Isik> getLiikmed() {
+  public static List<Isik> getLiikmed() {
     return liikmed;
   }
 }

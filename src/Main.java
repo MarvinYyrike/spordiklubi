@@ -6,6 +6,15 @@ import java.util.Scanner;
 
 public class Main {
   public static void main(String[] args) {
+    //Loon mõned spordiesemed, mis on spordiklubil laos olemas ja on võimalik laenutada
+    Spordivahend tennisekomplekt = new Spordivahend(true, 40, "tennisekomplekt", 1, 0);
+    Spordivahend rannatennisekomplekt = new Spordivahend(true, 30, "rannatennisekomplekt", 2, 0);
+    Spordivahend suusakomplekt = new Spordivahend(true, 50, "suusakomplekt", 3, 0);
+    Spordivahend õhupüstol = new Spordivahend(true, 300, "õhupüstol", 4, 0);
+    Spordivahend noolemääng = new Spordivahend(true, 20, "noolemäng", 5, 0);
+    Spordivahend matkauisud = new Spordivahend(true, 250, "matkauisud", 6, 0);
+
+
     // testiYritusi();
     // testiSpordivahendeid();
     //Scanneriga küsi infot osalemiste ja ürituste kohta.
@@ -46,6 +55,10 @@ public class Main {
         case 6:
           //vaataSpordivahendeid();
           Spordivahend valitudSpordivahend1 = otsiSpordivahend();
+          if(valitudSpordivahend1==null){
+            break;
+          }
+
           Laenutamine laenutamine = new Laenutamine(looIsik(),valitudSpordivahend1, LocalDate.now());
           laenutamine.addLaenutus(laenutamine);
 
@@ -73,18 +86,21 @@ public class Main {
   public static Spordivahend otsiSpordivahend() {
     System.out.println("Sisesta, mida tahad laenutada/tagastada");
     Scanner scanner = new Scanner(System.in);
-    String spordivahendiNimi =  scanner.next();
-    System.out.println("Otsin järgmist eset: " + spordivahendiNimi);
-    System.out.println("Ahaa üles leidsin");
+    String spordivahendiNimi = scanner.next();
+    System.out.println("Võtan eseme: " + spordivahendiNimi);
     List<Spordivahend> spordivahendid = Spordivahendid.getSpordivahendList();
-    Spordivahend valitudSpordivahend = spordivahendid.get(0);
+    Spordivahend valitudSpordivahend = null;
     for (Spordivahend spordivahend : spordivahendid) {
-      if (spordivahendiNimi.equals(spordivahend.getNimi())){
+      if (spordivahendiNimi.equals(spordivahend.getNimi())) {
         valitudSpordivahend = spordivahend;
       }
     }
-    return valitudSpordivahend;
+    if (valitudSpordivahend == null) {
+      System.out.println("Sellist eset ei ole...");
+    }
+      return valitudSpordivahend;
   }
+
   public static Isik looIsik(){
     System.out.println("Eesnimi:");
     Scanner scannerEesnimi = new Scanner(System.in);
@@ -105,17 +121,6 @@ public class Main {
   }
 
   private static void vaataSpordivahendeid() {
-    //Loon spordivahendite inventari listi:
-
-    //Loon mõned spordiesemed, mis on spordiklubil laos olemas ja on võimalik laenutada
-    Spordivahend tennisekomplekt = new Spordivahend(true, 40, "tennisekomplekt", 1, 0);
-    Spordivahend rannatennisekomplekt = new Spordivahend(true, 30, "rannatennisekomplekt", 2, 0);
-    Spordivahend suusakomplekt = new Spordivahend(true, 50, "suusakomplekt", 3, 0);
-    Spordivahend õhupüstol = new Spordivahend(true, 300, "õhupüstol", 4, 0);
-    Spordivahend noolemääng = new Spordivahend(true, 20, "noolemäng", 5, 0);
-    Spordivahend matkauisud = new Spordivahend(true, 250, "matkauisud", 6, 0);
-
-
     //To print the Spordivahendid list names
         List<Spordivahend> list = Spordivahendid.getSpordivahendList();
         for (int i = 0; i < list.size(); i++) {

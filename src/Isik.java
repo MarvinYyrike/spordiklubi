@@ -2,7 +2,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
-public class Isik {
+public class Isik extends Liikmed{
     private String eesnimi;
     private String perenimi;
     private LocalDate synniaeg;
@@ -13,7 +13,9 @@ public class Isik {
         this.perenimi = perenimi;
         this.synniaeg = synniaeg;
         this.isikukood = isikukood;
+        Liikmed.getLiikmed().add(this);
     }
+
 
 
     public void laenutab(Spordivahend spordivahend, LocalDate kuupäev, int tasutudTagatisRaha) {
