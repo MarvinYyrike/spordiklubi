@@ -7,7 +7,7 @@ public class Osalemised {
 
   public Osalemised() {
   }
-
+//loob isiku ja yrituse põhjal uue osalemise osalemislisti, kui seda seal veel ei ole.
   public Osalemine lisaOsalemine(Isik isik, Yritus yritus) {
     Osalemine osalemine = new Osalemine(isik, yritus);
     for (Osalemine o : osalemineList) {
@@ -18,7 +18,7 @@ public class Osalemised {
     osalemineList.add(osalemine);
     return osalemine;
   }
-
+//Meetod järjestab osalejad randomi alusel andes neile nii saavutatud kohad.
   public List<Isik> tulemusteArvutamine(Yritus yritus) {
     List<Isik> voistlejad = new ArrayList<>();
     for (Osalemine osalemine : osalemineList) {
