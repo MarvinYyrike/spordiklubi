@@ -51,8 +51,8 @@ public class Main {
         /*case 2:
           //läheb isiku üritusi otsima
           //TODO Edaspidi arendamiseks.
-*/
           break;
+         */
         case 3:
           if(aktiivneYritus == null) {
             System.out.println("Üritust pole valitud!");
@@ -218,16 +218,14 @@ public class Main {
     Scanner scannerIsikukood = new Scanner(System.in);
     String isikokood = scannerIsikukood.next();
 
-    Isik isik = new Isik(eesnimi, perenimi, synniaeg, isikokood);
     //Liikmed.lisaLiikmeks(isik); //pole vaja, kuna isiku loomisel (konstruktoris) luuakse kohe ka uus liige Liikmed listi
-    return isik;
+    return new Isik(eesnimi, perenimi, synniaeg, isikokood);
   }
 
   private static void vaataSpordivahendeid() {
     //To print the Spordivahendid list names
     List<Spordivahend> list = Spordivahendid.getSpordivahendList();
-    for (int i = 0; i < list.size(); i++) {
-      Spordivahend spordivahend = list.get(i);
+    for (Spordivahend spordivahend : list) {
       System.out.println(spordivahend.getNimi());
     }
   }

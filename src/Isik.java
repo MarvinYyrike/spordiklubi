@@ -37,13 +37,17 @@ public class Isik {
 
     public void tagastab(Spordivahend spordivahend) {
 
+        if (spordivahend.isKasLaos()) {
+            System.out.println("See ese on juba laos, kust sa selle said???");
+        } else {
+
         //randomiga valime laokoha (0-99), tsekime kas see on vaba ning kui on vaba, siis paneme laokohale
         int laokoht = (int) (Math.random() * 100);
-        List<Spordivahend> spordivahendList = spordivahend.getSpordivahendList();
+        List<Spordivahend> spordivahendList = Spordivahendid.getSpordivahendList();
         //boolean containsAge35 = people.stream().anyMatch(person -> person.getAge() == 35); chat-GPT abil küsitud näide
         boolean kasLaokohtKinni = spordivahendList.stream().anyMatch(spordivahend_x -> spordivahend_x.getLaokoht() == laokoht);
 
-        if(kasLaokohtKinni){
+        if (kasLaokohtKinni) {
             tagastab(spordivahend);
         } else {
             spordivahend.setKasLaos(true);
@@ -52,7 +56,7 @@ public class Isik {
             spordivahend.setLaokoht(laokoht);
             System.out.println("Panin laokohale: " + laokoht);
         }
-
+    }
     }
 
     public String getEesnimi() {
