@@ -24,6 +24,7 @@ public class Isik {
             laenutamine.getLaenutamineList().add(laenutamine);
             spordivahend.setKasLaos(false);
             spordivahend.setEsemeEestTasutudTagatisraha(tasutudTagatisRaha);
+            System.out.println("Hästi, too ese nädala pärast tagasi");
         } else if (!spordivahend.isKasLaos()){
             System.out.println("Eset ei ole laos");
         } else if(tasutudTagatisRaha < spordivahend.getTagatisraha()){

@@ -84,7 +84,6 @@ public class Main {
           Scanner scannerTagatisRaha = new Scanner(System.in);
           int tasutudTagatisRaha = scannerTagatisRaha.nextInt();
           aktiivneIsik.laenutab(valitudSpordivahend1,LocalDate.now(),tasutudTagatisRaha);
-          System.out.println("Hästi, too ese nädala pärast tagasi");
 
           break;
         case 7:
