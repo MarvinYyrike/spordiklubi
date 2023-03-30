@@ -51,4 +51,12 @@ public class Liikmed {
   public static int viimaneNr() {
     return liikmed.size();
   }
+
+  public static List<Isik> getLiikmed() {
+    return liikmed;
+  }
+
+  public static void setLiikmed(List<Isik> liikmed) {
+    Liikmed.liikmed = liikmed;
+  }
 }

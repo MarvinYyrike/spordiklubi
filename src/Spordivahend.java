@@ -11,7 +11,6 @@ public class Spordivahend extends Spordivahendid{
         this.nimi = nimi;
         this.laokoht = laokoht;
         this.esemeEestTasutudTagatisraha = esemeEestTasutudTagatisraha;
-
         Spordivahendid.getSpordivahendList().add(this);
     }
 

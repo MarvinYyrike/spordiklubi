@@ -13,6 +13,7 @@ public class Isik {
         this.perenimi = perenimi;
         this.synniaeg = synniaeg;
         this.isikukood = isikukood;
+        Liikmed.getLiikmed().add(this);
     }
 
 
@@ -28,7 +29,9 @@ public class Isik {
         } else if(tasutudTagatisRaha < spordivahend.getTagatisraha()){
             System.out.println("Tasutud tagatisraha on liiga väike");
         }
-
+        else {
+            System.out.println("Midagi läks valesti, proovi uuesti...");
+        }
     }
 
     public void tagastab(Spordivahend spordivahend) {
@@ -43,9 +46,10 @@ public class Isik {
             tagastab(spordivahend);
         } else {
             spordivahend.setKasLaos(true);
-            spordivahend.setEsemeEestTasutudTagatisraha(0);
             System.out.println("Tagastame tagatisraha, " + spordivahend.getEsemeEestTasutudTagatisraha() + " eurot!");
+            spordivahend.setEsemeEestTasutudTagatisraha(0);
             spordivahend.setLaokoht(laokoht);
+            System.out.println("Panin laokohale: " + laokoht);
         }
 
     }
