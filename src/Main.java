@@ -25,7 +25,7 @@ public class Main {
       System.out.println("Mida soovid teha?");
       System.out.println();
       System.out.println("1 - Sisestada üritusel osalemist.");
-      System.out.println("2 - Otsida üritusi, kus isik on osalenud.");
+      //System.out.println("2 - Otsida üritusi, kus isik on osalenud.");
       System.out.println("3 - Vaadata aktiivse ürituse tulemusi");
       System.out.println("4 - Väljuda.");
       System.out.println("5 - Näha laenutatavaid esemeid");
@@ -48,9 +48,10 @@ public class Main {
           System.out.println("Isikule:" + aktiivneIsik.getEesnimi() + " " + aktiivneIsik.getPerenimi());
           System.out.println("on osalemine edukalt lisatud!");
           break;
-        case 2:
+        /*case 2:
           //läheb isiku üritusi otsima
-
+          //TODO Edaspidi arendamiseks.
+*/
           break;
         case 3:
           if(aktiivneYritus == null) {
