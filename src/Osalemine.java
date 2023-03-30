@@ -1,5 +1,5 @@
 import java.util.Objects;
-
+//klassi alusel luuakse uus isend osalemine, mis ühendab isikuid ja üritusi.
 public class Osalemine {
     private Isik isik;
     private Yritus yritus;
