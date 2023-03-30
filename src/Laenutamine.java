@@ -12,7 +12,11 @@ public class Laenutamine extends Laenutamised{
         this.laenutamisKuupäev = laenutamisKuupäev;
 
     }
+    //Possible to add laenutus for future developement.
+    /*
     public void addLaenutus(Laenutamine laenutamine){
         laenutamine.getLaenutamineList().add(laenutamine);
     }
+
+     */
 }

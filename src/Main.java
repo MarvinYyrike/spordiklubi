@@ -1,7 +1,6 @@
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -51,6 +50,7 @@ public class Main {
           break;
         case 2:
           //läheb isiku üritusi otsima
+
           break;
         case 3:
           if(aktiivneYritus == null) {
@@ -231,6 +231,7 @@ public class Main {
     }
   }
 
+  /* //kasutasiem testimiseks
   private static void testiYritusi() {
     List<Yritus> yritused = new ArrayList<>();
     yritused.add(new Yritus("Paide-Türi rahvajooks 2023", LocalDate.parse("2023-09-24")));
@@ -253,4 +254,6 @@ public class Main {
       System.out.println(i + 1 + ". koha sai: " + tulemused.get(i));
     }
   }
+
+   */
 }

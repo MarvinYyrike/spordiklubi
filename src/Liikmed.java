@@ -16,12 +16,18 @@ public class Liikmed {
     return false;
   }
 
+  //Tuleviku arenduseks
+  /*
   public static void lisaLiikmeks(Isik isik) {
     if (onLiige(isik)) {
       liikmed.add(isik);
     }
   }
 
+   */
+
+  //Tuleviku jaoks äkki vaja
+  /*
   public static Isik otsiIsikEesnimega(String isikEesnimi) {
     for (Isik isik : liikmed) {
       if (isik.getEesnimi().equalsIgnoreCase(isikEesnimi)) {
@@ -30,6 +36,8 @@ public class Liikmed {
     }
     return null;
   }
+
+   */
 
   public static void kuvaLiikmed() {
     for (int i = 0; i < liikmed.size(); i++) {
